@@ -1,0 +1,26 @@
+{
+  "name": "proyecto_api",
+  "version": "1.0.0",
+  "description": "Proyecto de SPA",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server  --open  --mode development"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": " (MIT)",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "babel-loader": "^8.2.4",
+    "html-webpack-plugin": "^4.5.2",
+    "webpack": "^5.70.0",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "webpack-cli": "^3.3.12"
+  }
+}
