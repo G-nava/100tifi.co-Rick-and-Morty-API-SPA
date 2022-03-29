@@ -19,7 +19,7 @@
   */
 const path = require('path'); // trae 'path' (de node) que nos va a permitir acceder ahacia donde estamos o nos estamos moviendo dentro de la carpets
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //archivo necesario para trabajar con Html
-
+const CopyWebpackPlugin =require('copy-webpack-plugin');
 
 module.exports = { // se crea un módulo para exportar donde viene cada configuracion de lo que va a suceder
     entry: './src/index.js', // establesco el punto de entrada, aquí se estableceé todo el código inicial y va a partir hacia el desarrollo que se va acrear.
@@ -36,28 +36,33 @@ module.exports = { // se crea un módulo para exportar donde viene cada configur
     module:{
         rules:[  // se crean reglas que son pasadas por medio de un arreglo
             {
-                test: /\.js?$/,  // estructura de babbel (regex): 
-                exclude: /node_modules/,  // escluir la carpeta de node modules
+                test: /\.m?js$/,  // estructura de babbel (regex): 
+                exclude: /node_modules|bower_components/,  // escluir la carpeta de node modules
                 use:{  // utilizar un loader o una configuracion establecida para trabajar todo el código
                     loader: 'babel-loader',
                     options:{
-                        presets:[
-                            [ '@babel/preset-env',
-                            {targets:"defaults"}]
-                        ]
+                        presets:['@babel/preset-env'],
+                        plugins: ['@babel/plugin-proposal-object-rest-spread']
+              
                     }
                 }
             }
         ]
     },
+
     plugins:[  // establecer los plugins a utilizar
-        new HtmlWebpackPlugin([
+        new HtmlWebpackPlugin(
             {
                 inject: true,
                 template: './public/index.html',
-                filename:'./index.html'
+                filename:'./index.html',
             }
-        ])
+        ),
+        new CopyWebpackPlugin({
+            patterns: [{from: './src/styles/styles.css',
+            to: ''        
+        }]
+        })
     ]
 
 }
@@ -84,5 +89,24 @@ dependdencias de babel:
 2)Luego debemos generar en la raiz del proyecto el archivo
  “babel.config.json” alli debemos agregar lo siguiente:
 
-{
+
+use:{  
+        loader: 'babel-loader',
+        options:{
+            presets:[
+                [ '@babel/preset-env',
+                {targets:"defaults"}]
+            ]
+        }
+    }
+
+
+ npm install --save-dev webpack-cli
+
+ npm install webpack-dev-server --save-dev
+
+ npm install -D babel-loader @babel/core @babel/preset-env webpack
+
+ npm install core-js
+npm install regenerator-runtime
 */

@@ -1,7 +1,6 @@
-console.log('hello');
+import router from './routes';
 
-const fancyFunc = () => {
-    return [1, 2];
-  };
-  
-  const [a, b] = fancyFunc();
+
+//window  permite saber si está en el contexto de la aplicación + event listener
+window.addEventListener('load', router);
+window.addEventListener('hashchange',router)
