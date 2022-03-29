@@ -3,7 +3,7 @@ cache:
   directories:
     - ~/.npm
 node_js:
-  - '16'
+  - '12'
 git:
   depth: 3
 script:
@@ -13,7 +13,7 @@ deploy:
   edge: true,
   skip-cleanup: true
   keep-history: true
-  github-tocken: $GITHUB_TOKEN
+  github-token: $GITHUB_TOKEN
   local-dir: dist/
   target-branch: gh-pages
   commit_message: "Deploy Release"
