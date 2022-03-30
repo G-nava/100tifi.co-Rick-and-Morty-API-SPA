@@ -1,4 +1,4 @@
-name: integracion continua con node.js
+# name: integracion continua con node.js
 
 on:
   push:
@@ -11,10 +11,11 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    script:
+      script:
     - run: npm ci
     - run: npm test
     - run: npm run build
+      name: integracion continua con node.js
       with:
           # This is the branch you wish to deploy to, for example gh-pages or docs.
       branch: gh-pages
