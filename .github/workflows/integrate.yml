@@ -15,16 +15,16 @@ jobs:
     - run: npm test
     - run: npm run build
 
-  deploy:
-    provider: pages
-    edge: true
-    skip-cleanup : true
-    keep-history: true
-    local-dir: dist/
-    target-brach: gh-pages
-    commit_message: "Deploy Release"
-    # on:
-    #   branch: main
+    deploy:
+      provider: pages
+      edge: true
+      skip-cleanup : true
+      keep-history: true
+      local-dir: dist/
+      target-brach: gh-pages
+      commit_message: "Deploy Release"
+      # on:
+      #   branch: main
 
 
 
