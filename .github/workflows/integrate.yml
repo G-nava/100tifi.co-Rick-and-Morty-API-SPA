@@ -1,4 +1,4 @@
-name: integracion continua con node.js
+# name: integracion continua con node.js
 
 # on:
 #   pull_request:
@@ -26,29 +26,29 @@ name: integracion continua con node.js
 #       commit_message: "Deploy Release"
 #       # on:
 #         #   branch: main
-  language: node_js
-  cache:
-    directories:
-      - ~/.npm
-  node_js:
-    - "12"
-  git:
-    depth: 3
-  script:
-    - run: npm ci
-    - run: npm test
-    - run: npm run build
-  deploy:
-    provider: pages
-    edge: true
-    skip-cleanup: true
-    keep-history: true
-    # github-token: $GITHUB_TOKEN
-    local-dir: dist/
-    target-branch: gh-pages
-    commit_message: "Deploy Release"
-    on:
-      branch: master
+language: node_js
+cache:
+  directories:
+    - ~/.npm
+node_js:
+  - "12"
+git:
+  depth: 3
+script:
+  - run: npm ci
+  - run: npm test
+  - run: npm run build
+deploy:
+  provider: pages
+  edge: true
+  skip-cleanup: true
+  keep-history: true
+  # github-token: $GITHUB_TOKEN
+  local-dir: dist/
+  target-branch: gh-pages
+  commit_message: "Deploy Release"
+  on:
+    branch: master
 
 
 
