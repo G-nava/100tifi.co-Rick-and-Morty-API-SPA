@@ -1,8 +1,8 @@
 name: integracion continua con node.js
 
-on:
-  pull_request:
-    branches: [main]
+# on:
+#   pull_request:
+#     branches: [main]
 jobs:
   ci_to_dev:
     runs-on: ubuntu-latest
@@ -11,6 +11,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
+    script:
     - run: npm ci
     - run: npm test
     - run: npm run build
