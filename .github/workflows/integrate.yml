@@ -1,32 +1,54 @@
 name: integracion continua con node.js
 
-on:
-  pull_request:
-    branches: [gh-pages]
-jobs:
-  ci_to_dev:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    script:
+# on:
+#   pull_request:
+#     branches: [gh-pages]
+# jobs:
+#   ci_to_dev:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#     - uses: actions/setup-node@v1
+#       with:
+#         node-version: 12.x
+#     script:
+#     - run: npm ci
+#     - run: npm test
+#     - run: npm run build
+
+#     deploy:
+#       provider: pages
+#       edge: true
+#       skip-cleanup : true
+#       keep-history: true
+#       local-dir: dist/
+#       target-brach: gh-pages
+#       commit_message: "Deploy Release"
+#       # on:
+#         #   branch: main
+  language: node_js
+  cache:
+    directories:
+      - ~/.npm
+  node_js:
+    - "12"
+  git:
+    depth: 3
+  script:
     - run: npm ci
     - run: npm test
     - run: npm run build
-
-    deploy:
-      provider: pages
-      edge: true
-      skip-cleanup : true
-      keep-history: true
-      local-dir: dist/
-      target-brach: gh-pages
-      commit_message: "Deploy Release"
-      # on:
-        #   branch: main
-
+  deploy:
+    provider: pages
+    edge: true
+    skip-cleanup: true
+    keep-history: true
+    # github-token: $GITHUB_TOKEN
+    local-dir: dist/
+    target-branch: gh-pages
+    commit_message: "Deploy Release"
+    on:
+      branch: master
 
 
 
