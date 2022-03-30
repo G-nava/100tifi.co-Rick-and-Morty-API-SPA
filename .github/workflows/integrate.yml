@@ -14,7 +14,7 @@ jobs:
     - run: npm ci
     - run: npm test
     - run: npm run build
-    
+
     deploy:
       provider: pages
       edge: true
@@ -24,7 +24,7 @@ jobs:
       target-brach: gh-pages
       commit_message: "Deploy Release"
       on:
-        branch: dev
+        branch: main
 
 
 
