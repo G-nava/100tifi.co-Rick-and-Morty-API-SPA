@@ -2,7 +2,7 @@ name: integracion continua con node.js
 
 on:
   pull_request:
-    branches: [dev]
+    branches: [main]
 jobs:
   ci_to_dev:
     runs-on: ubuntu-latest
