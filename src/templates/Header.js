@@ -16,6 +16,7 @@ const Header = () =>{
         </div>
     </div> 
  `;
+ 
  return view;
 }
 
