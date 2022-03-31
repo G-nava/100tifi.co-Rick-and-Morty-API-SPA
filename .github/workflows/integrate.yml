@@ -1,43 +1,21 @@
-on:
-push:
-    branches:
-    - main
-
-jobs:
-build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: Deploy with github-pages
-    uses: JamesIves/github-pages-deploy-action@master
-    env:
-        ACCESS_TOKEN: ${{ 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 }}
-        BASE_BRANCH: master # The branch the action should deploy from.
-        BRANCH: gh-pages # The branch the action should deploy to.
-        FOLDER: target # The folder the action should deploy.
-        BUILD_SCRIPT: npm install && npm run-script build
-
-
-# language: node_js
-# cache:
-#   directories:
-#     - ~/.npm
-# node_js:
-#   - '12'
-# git:
-#   depth: 3
-# script:
-#   - npm build
-# deploy:
-#   provider: pages
-#   # edge: true,
-#   # skip-cleanup : true
-#   # keep-history: true
-#   # github-token: $GITHUB_TOKEN
-#   local-dir: dist/
-#   target-brach: gh-pages
-#   commit_message: "Deploy Release"
-#   on:
-#     branch: main
+language: node_js
+cache:
+  directories:
+    - ~/.npm
+node_js:
+  - '12'
+git:
+  depth: 3
+script:
+  - yarn build
+deploy:
+  provider: pages
+  edge: true,
+  skip-cleanup : true
+  keep-history: true
+  github-token: $GITHUB_TOKEN
+  local-dir: dist/
+  target-brach: gh-pages
+  commit_message: "Deploy Release"
+  on:
+    branch: master
