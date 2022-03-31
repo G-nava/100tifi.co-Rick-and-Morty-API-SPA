@@ -3,11 +3,11 @@ cache:
   directories:
     - ~/.npm
 node_js:
-  - '12'
+  - '12.x'
 git:
   depth: 3
 script:
-  - yarn build
+  - npm build
 deploy:
   provider: pages
   edge: true,
