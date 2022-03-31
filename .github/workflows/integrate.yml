@@ -18,4 +18,6 @@ deploy:
   target-brach: gh-pages
   commit_message: "Deploy Release"
   on:
-    branch: main
+    # branch: main
+    push:
+      branches: [ main ]
