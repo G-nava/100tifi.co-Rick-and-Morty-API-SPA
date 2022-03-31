@@ -1,23 +1,69 @@
-language: node_js
-cache:
-  directories:
-    - ~/.npm
-node_js:
-  - '12.x'
-git:
-  depth: 3
-script:
-  - npm build
-deploy:
-  provider: pages
-  edge: true,
-  skip-cleanup : true
-  keep-history: true
-  github-token: $GITHUB_TOKEN
-  local-dir: dist/
-  target-brach: gh-pages
-  commit_message: "Deploy Release"
-  on:
-    # branch: main
-    push:
-      branches: [ main ]
+# This is a basic workflow to help you get started with Actions
+name: CI
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.1.5
+        with:
+          # Version Spec of the version to use.  Examples: 12.x, 10.15.1, >=10.15.0
+          node-version: 12.x
+      - run: npm ci
+      
+      - run: npm run build --if-present
+      
+      - run: npm test
+      
+      - name: Deploy to GitHub Pages
+        # You may pin to the exact commit or the version.
+        # uses: JamesIves/github-pages-deploy-action@164583b9e44b4fc5910e78feb607ea7c98d3c7b9
+        uses: 
+        with:
+          # This is the branch you wish to deploy to, for example gh-pages or docs.
+          branch: gh-pages
+          # The folder in your repository that you want to deploy. If your build script compiles into a directory named build you would put it here. Folder paths cannot have a leading / or ./. If you wish to deploy the root directory you can place a . here.
+          folder: dist
+
+
+
+
+
+# language: node_js
+# cache:
+#   directories:
+#     - ~/.npm
+# node_js:
+#   - '12.x'
+# git:
+#   depth: 3
+# script:
+#   - npm build
+# deploy:
+#   provider: pages
+#   edge: true,
+#   skip-cleanup : true
+#   keep-history: true
+#   github-token: $GITHUB_TOKEN
+#   local-dir: dist/
+#   target-brach: gh-pages
+#   commit_message: "Deploy Release"
+#   on:
+#     # branch: main
+#     push:
+#       branches: [ main ]
