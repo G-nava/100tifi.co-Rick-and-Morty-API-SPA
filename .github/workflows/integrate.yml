@@ -3,7 +3,7 @@ name: CI
 # Controls when the action will run. 
 on:
   push:
-    branch: [ main ]
+    branches: [ main ]
 
   workflow_dispatch:
 
