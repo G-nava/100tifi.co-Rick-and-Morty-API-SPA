@@ -33,7 +33,7 @@ jobs:
         with:
           # This is the branch you wish to deploy to, for example gh-pages or docs.
           branch: gh-pages
-          folder: public/dist
+          folder: dist/
 
 
 
