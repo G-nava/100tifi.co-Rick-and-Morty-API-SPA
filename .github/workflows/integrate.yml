@@ -1,61 +1,21 @@
-# name: integracion continua con node.js
-name: integracion continua con node.js
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-    
-    - name: Upload Artifact
-      uses: actions/upload-artifact@master
-
-      with:
-        node-version: 12.x
-    - run: npm ci
-    - run: npm test
-    - run: npm run build
-
-  deploy:
-    runs-on: ubuntu-latest
-    provider: pages
-    edge: true
-    skip-cleanup : true
-    keep-history: true
-    local-dir: dist/
-    target-brach: gh-pages
-    commit_message: "Deploy Release"
-    # on:
-      #   branch: main
-
-
-
-
-
- 
-# language: node_js
-# cache:
-#   directories:
-#     - ~/.npm
-# node_js:
-#   - '12'
-# git:
-#   depth: 3
-# script:
-#   - yarn build
-# deploy:
-#   provider: pages
-#   edge: true,
-#   skip-cleanup : true
-#   keep-history: true
-#   github-token: $GITHUB_TOKEN
-#   local-dir: dist/
-#   target-brach: gh-pages
-#   commit_message: "Deploy Release"
-#   on:
-#     branch: master
+language: node_js
+cache:
+  directories:
+    - ~/.npm
+node_js:
+  - '12'
+git:
+  depth: 3
+script:
+  - npm build
+deploy:
+  provider: pages
+  # edge: true,
+  # skip-cleanup : true
+  # keep-history: true
+  # github-token: $GITHUB_TOKEN
+  local-dir: dist/
+  target-brach: gh-pages
+  commit_message: "Deploy Release"
+  on:
+    branch: master
